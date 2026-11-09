@@ -1,0 +1,55 @@
+{
+ "frames": {
+  "0bg_gameplay0000": {
+   "frame": {
+    "x": 1,
+    "y": 1,
+    "w": 1398,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 1398,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 1398,
+    "h": 480
+   }
+  },
+  "BasketGraphic0000": {
+   "frame": {
+    "x": 1401,
+    "y": 1,
+    "w": 92,
+    "h": 152
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 92,
+    "h": 152
+   },
+   "sourceSize": {
+    "w": 92,
+    "h": 152
+   }
+  }
+ },
+ "meta": {
+  "app": "src/art/court2026/build.py",
+  "version": "1",
+  "image": "city.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 2048,
+   "h": 512
+  },
+  "scale": "1"
+ }
+}

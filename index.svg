@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Basketball Stars Ultimate 3.1.2: the public copy on jsDelivr (built by src/jsdelivr.js; see its comments).
+     jsDelivr shows .html files as plain text, but an .svg opened in the browser is a page that runs scripts. This one holds a
+     normal HTML page in a <foreignObject> and loads the game from the files next to it, pinned to the newest release. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;display:block;background:#000">
+<title>Basketball Stars Ultimate</title>
+<foreignObject x="0" y="0" width="100%" height="100%">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="bsu-app">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+<style><![CDATA[
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+]]></style>
+</head>
+<body>
+<div id="content"></div>
+<div id="orientation"></div>
+<div id="loader">Loading ...</div>
+<script><![CDATA[
+(function() {
+  var NS = "http://www.w3.org/1999/xhtml", VER = "3.1.2";
+  var root = document.getElementsByTagNameNS(NS, "html")[0], head = root.getElementsByTagNameNS(NS, "head")[0], body = root.getElementsByTagNameNS(NS, "body")[0];
+
+  // ---- make the SVG document look like an HTML page to the game ---------------------------------------------------------
+  // (document.head / body / documentElement are the HTML elements above; createElement makes HTML elements, as on a normal page)
+  function getter(o, k, f) { try { Object.defineProperty(o, k, { configurable: true, get: f }); } catch (x) { } }
+  getter(document, "head", function() { return head; });
+  getter(document, "body", function() { return body; });
+  getter(document, "documentElement", function() { return root; });
+  var make = document.createElement;
+  document.createElement = function(tag, opt) { return typeof tag === "string" ? document.createElementNS(NS, tag.toLowerCase()) : make.call(document, tag, opt); };
+  function el(tag, attrs, css, text) {
+    var d = document.createElementNS(NS, tag), k;
+    for (k in attrs || {}) d.setAttribute(k, attrs[k]);
+    css && (d.style.cssText = css); text != null && (d.textContent = text); return d;
+  }
+
+  // ---- the page's settings, as in index.html (this is never basketballstarsultimate.com: no website around it, no ads) -
+  window.BSU_SERVER = "https://bsu-online.needhamgarrett257.workers.dev";
+  window.__bsuHome = false; window.__bsuSite = false; window.__bsuJsd = true;
+  window.__bsuBarH = function() { return 0; };
+
+  // tab-close guard (2.3): closing or reloading the tab asks first
+  window.addEventListener("beforeunload", function(ev) {
+    if (window.__bsuNoGuard) return;
+    ev.preventDefault(); ev.returnValue = ""; return "";
+  });
+
+  // ---- about:blank mode (2.3, Settings > Advanced; on by default here), as in index.html --------------------------------
+  var framed = false;
+  try { framed = window.top !== window; } catch (x) { framed = true; }
+  function blankSetting() {
+    try { var s = JSON.parse(localStorage.getItem("bsu_settings_v1") || "{}"); return s.aboutBlank === undefined ? true : s.aboutBlank !== false; }
+    catch (x) { return true; }
+  }
+  window.__bsuOpenBlank = function() {
+    var w = null;
+    try { w = window.open("about:blank", "_blank"); } catch (x) { w = null; }
+    if (!w || w.closed) return null;
+    try {
+      var url = location.href.replace(/([?&])noblank(=[^&#]*)?&?/, "$1").replace(/[?&]$/, "");
+      var d = w.document, hd = d.head || d.documentElement.appendChild(d.createElement("head")), bd = d.body || d.documentElement.appendChild(d.createElement("body"));
+      d.title = "Basketball Stars Ultimate";
+      var mv = d.createElement("meta"); mv.name = "viewport"; mv.content = "initial-scale=1, maximum-scale=1, user-scalable=no"; hd.appendChild(mv);
+      var css = d.createElement("style"); css.textContent = "html,body{margin:0;height:100%;background:#000;overflow:hidden}iframe{position:fixed;left:0;top:0;width:100%;height:100%;border:0}"; hd.appendChild(css);
+      var sc = d.createElement("script"); sc.textContent = 'window.addEventListener("beforeunload",function(e){e.preventDefault();e.returnValue="";return "";});'; hd.appendChild(sc);
+      var f = d.createElement("iframe");
+      f.src = url; f.setAttribute("allow", "autoplay; fullscreen; clipboard-write"); f.setAttribute("allowfullscreen", "");
+      bd.appendChild(f);
+      setTimeout(function() { try { f.focus(); } catch (x) { } }, 300);
+    } catch (x) { }
+    window.__bsuNoGuard = true;
+    setTimeout(function() { try { location.replace("https://google.com"); } catch (x) { } }, 60);
+    return w;
+  };
+  if (!framed && !/[?&]noblank\b/.test(location.search) && blankSetting()) {
+    if (window.__bsuOpenBlank()) {
+      // the game runs in the new tab; this one says so (and is on its way to Google)
+      window.__bsuCloaked = true; window.__bsuNoGuard = true;
+      var ld = document.getElementById("loader"); ld && (ld.style.display = "none");
+      var box = el("div", null, "position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0d0420;font:18px/1.5 impact,Impact,'Arial Black',sans-serif;letter-spacing:.5px;color:#fff;text-align:center");
+      var card = el("div", null, "background:#1a0838;border:4px solid #ff99ff;border-radius:20px;padding:28px 36px;max-width:520px;margin:16px");
+      card.appendChild(el("div", null, "color:#ffd23f;font-size:30px;letter-spacing:1px", "BASKETBALL STARS ULTIMATE"));
+      card.appendChild(el("div", null, "margin:10px 0 18px;color:#b7a6e6", "The game opened in a new about:blank tab. You can close this one."));
+      card.appendChild(el("a", { href: location.pathname + "?noblank" + location.hash }, "display:inline-block;background:#3a1a7a;border:3px solid #00ccff;border-radius:10px;padding:6px 18px;color:#fff;text-decoration:none", "PLAY IN THIS TAB INSTEAD"));
+      box.appendChild(card); body.appendChild(box);
+      return;
+    }
+    // pop-ups are blocked: play here, and on the very first visit say how to turn the about:blank tab on
+    try { if (!localStorage.getItem("bsu_popupHint")) { localStorage.setItem("bsu_popupHint", "1"); setTimeout(function() { alert("Enable popups for automatic about:blank opening."); }, 0); } } catch (x) { }
+  }
+
+  // ---- which files: the newest release, pinned ----------------------------------------------------------------------------
+  // A link without a version (cdn.jsdelivr.net/gh/USER/REPO/index.svg) asks jsDelivr for the newest release tag (cached for
+  // 5 minutes) and loads that release's files: a release's files never change, so the game never mixes two versions and
+  // online players are on the newest one within minutes of a release. The address bar keeps the short link (a <base>
+  // element points the page's own links at the release). A link with a version (.../REPO@3.1.2/index.svg), a copy anywhere
+  // else, or no answer from jsDelivr: the files next to this page.
+  var gh = /(^|\.)jsdelivr\.net$/i.test(location.hostname) && /^\/gh\/([^\/]+)\/([^\/@]+)(@[^\/]*)?\//.exec(location.pathname);
+  var nobase = false;
+  try { nobase = sessionStorage.getItem("bsu_jsd_nobase") === VER; } catch (x) { }
+  if (!gh || gh[3] || nobase) return boot(null);
+  var done = false, timer = setTimeout(function() { pick(null); }, 4000);
+  function pick(v) {
+    if (done) return; done = true; clearTimeout(timer);
+    boot(v ? location.origin + "/gh/" + gh[1] + "/" + gh[2] + "@" + v + "/" : null);
+  }
+  try {
+    fetch("https://data.jsdelivr.com/v1/packages/gh/" + gh[1] + "/" + gh[2] + "/resolved?specifier=latest", { cache: "no-store" })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { pick(j && typeof j.version === "string" && /^[0-9A-Za-z._+-]{1,40}$/.test(j.version) ? j.version : null); }, function() { pick(null); });
+  } catch (x) { pick(null); }
+
+  // ---- load the game ------------------------------------------------------------------------------------------------------
+  function boot(base) {
+    if (base) head.insertBefore(el("base", { href: base }), head.firstChild);
+    head.appendChild(el("link", { rel: "icon", type: "image/png", sizes: "32x32", href: "assets/images/icon/favicon-32x32.png" }));
+    head.appendChild(el("link", { rel: "stylesheet", href: "assets/css/app.css?v=" + VER }));
+    // On index.html the three scripts run while the page is still loading and the game starts when it has loaded
+    // (Phaser waits for DOMContentLoaded). Here they're added afterwards, so the page says it's still loading until the
+    // last one has run (dragonBones builds on Phaser, which is inside game.js: it has to come after it).
+    getter(document, "readyState", function() { return "loading"; });
+    var files = ["lib/nape.min.js", "game.js", "lib/dragonBones.min.js"], failed = false;
+    files.forEach(function(f, k) {
+      var s = el("script", { src: f + "?v=" + VER });
+      s.async = false;
+      s.onerror = function() {
+        if (failed) return; failed = true;
+        // a release that jsDelivr can't serve (not tagged yet, or still on its way): once per visit, use the files next to this page
+        if (base) { try { sessionStorage.setItem("bsu_jsd_nobase", VER); } catch (x) { } window.__bsuNoGuard = true; location.reload(); return; }
+        var ld = document.getElementById("loader");
+        ld && (ld.style.cssText = "position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:18px Arial,sans-serif;text-indent:0;border:0;border-radius:0;animation:none;width:auto;height:auto;margin:0");
+        ld && (ld.textContent = "The game's files didn't load. Refresh the page to try again.");
+      };
+      if (k === files.length - 1) s.onload = function() {
+        try { delete document.readyState; } catch (x) { }
+        try { document.dispatchEvent(new Event("DOMContentLoaded")); } catch (x) { }
+      };
+      body.appendChild(s);
+    });
+  }
+})();
+]]></script>
+</body>
+</html>
+</foreignObject>
+</svg>
