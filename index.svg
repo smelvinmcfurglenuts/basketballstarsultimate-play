@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Basketball Stars Ultimate 3.1.2: the public copy on jsDelivr (built by src/jsdelivr.js; see its comments).
+<!-- Basketball Stars Ultimate 3.2.1: the public copy on jsDelivr (built by src/jsdelivr.js; see its comments).
      jsDelivr shows .html files as plain text, but an .svg opened in the browser is a page that runs scripts. This one holds a
      normal HTML page in a <foreignObject> and loads the game from the files next to it, pinned to the newest release. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;display:block;background:#000">
@@ -19,7 +19,7 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 <div id="loader">Loading ...</div>
 <script><![CDATA[
 (function() {
-  var NS = "http://www.w3.org/1999/xhtml", VER = "3.1.2";
+  var NS = "http://www.w3.org/1999/xhtml", VER = "3.2.1";
   var root = document.getElementsByTagNameNS(NS, "html")[0], head = root.getElementsByTagNameNS(NS, "head")[0], body = root.getElementsByTagNameNS(NS, "body")[0];
 
   // ---- make the SVG document look like an HTML page to the game ---------------------------------------------------------
